@@ -1,0 +1,66 @@
+{
+    "name": "load_regions",
+    "properties": {
+        "activities": [
+            {
+                "name": "load_data",
+                "type": "DatabricksNotebook",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "notebookPath": "/Users/jayatissadinapalage@gmail.com/load_data",
+                    "baseParameters": {
+                        "container": "data",
+                        "blob": "HE_Regions.zip"
+                    }
+                },
+                "linkedServiceName": {
+                    "referenceName": "AzureDatabricks",
+                    "type": "LinkedServiceReference"
+                }
+            },
+            {
+                "name": "check status",
+                "type": "IfCondition",
+                "dependsOn": [
+                    {
+                        "activity": "load_data",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "userProperties": [],
+                "typeProperties": {
+                    "expression": {
+                        "value": "@endsWith(substring(activity('load_data').output.runOutput,sub(lastIndexOf(activity('load_data').output.runOutput, ')'),8), 7), 'success')\n",
+                        "type": "Expression"
+                    },
+                    "ifFalseActivities": [
+                        {
+                            "name": "Fail",
+                            "type": "Fail",
+                            "dependsOn": [],
+                            "userProperties": [],
+                            "typeProperties": {
+                                "message": {
+                                    "value": "@activity('load_data').output.runOutput",
+                                    "type": "Expression"
+                                },
+                                "errorCode": "error"
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "annotations": []
+    }
+}

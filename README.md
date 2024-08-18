@@ -12,7 +12,14 @@ Before running the microservice, make sure you have the following installed:
 You will also need:
 
 - Access to an Azure Blob Storage account.
-- Access to a PostgreSQL database (e.g., Azure Database for PostgreSQL).
+- Access to a PostgreSQL database which has the he_regions table.
+```
+  CREATE TABLE he_regions (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    geometry_wkt TEXT 
+);
+```
 
 ## Setup Instructions
 

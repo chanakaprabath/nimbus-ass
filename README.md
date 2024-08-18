@@ -257,25 +257,21 @@ This guide will walk you through the steps to set up an Azure Data Factory (ADF)
 - Create a Pipeline
 - Add Databricks Activity
 - Add an If Condition Activity
-   - Drag and drop the `If Condition` activity onto the pipeline canvas.
-   - Configure the `If Condition` activity:
-     - **Name:** Set a name for the activity (e.g., `check_status`).
      - **Expression:** Set the condition to check the output of the Databricks notebook:
        ```json
        @endsWith(substring(activity('load_data').output.runOutput, sub(lastIndexOf(activity('load_data').output.runOutput, ')'), 8), 7), 'success')
        ```
      - **If False Activities:** Add a `Fail` activity to handle failures.
-
--Configure the Fail Activity
+- Configure the Fail Activity
      - **Message:** Use the output of the `load_data` activity to describe the failure:
        ```json
        @activity('load_data').output.runOutput
        ```
      - **Error Code:** Set an error code (e.g., `error`).
 
--Create a Trigger
--Add Trigger and Schedule
--Publish All Changes
+- Create a Trigger
+- Add Trigger and Schedule
+- Publish All Changes
 
 ## Explanation of the Pipeline
 

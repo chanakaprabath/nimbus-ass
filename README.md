@@ -172,3 +172,47 @@ You should receive a response indicating that the service is running:
   "status": "Service is running"
 }
 ```
+
+## Creating and Uploading the Python Wheel
+
+1. **Navigate to the Wheel Directory:**
+
+    Ensure you're in the `microservice/python-wheel` directory:
+
+    ```bash
+    cd nimbus-ass/microservice/python-wheel
+    ```
+
+2. **Install Required Tools:**
+
+    Ensure `setuptools` and `wheel` are installed:
+
+    ```bash
+    pip install setuptools wheel
+    ```
+
+3. **Create the Wheel File:**
+
+    Run the following command to build the wheel file:
+
+    ```bash
+    python setup.py sdist bdist_wheel
+    ```
+
+    This will generate a `.whl` file in the `dist` directory.
+
+4. **Upload the Wheel File to PyPI:**
+
+    First, install `twine` if it's not already installed:
+
+    ```bash
+    pip install twine
+    ```
+
+    Then, upload the wheel file to PyPI:
+
+    ```bash
+    twine upload dist/*
+    ```
+
+    You'll be prompted to enter your PyPI credentials. After successful upload, your package will be available on PyPI.

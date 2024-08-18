@@ -246,3 +246,49 @@ You should receive a response indicating that the service is running:
   from uploadshapefile import functions
   spark = SparkSession.builder.appName("Shapefile_load").getOrCreate()
   upload_result = functions.upload(container,blob)#load data
+  
+# Setting Up and Configuring an Azure Data Factory Pipeline
+
+This guide will walk you through the steps to set up an Azure Data Factory (ADF) pipeline that uses a Databricks notebook to process data. The pipeline includes creating a linked service, adding activities, and setting up triggers and schedules.
+
+## Steps to Set Up the Pipeline
+
+- Create a New Linked Service
+- Create a Pipeline
+- Add Databricks Activity
+- Add an If Condition Activity
+   - Drag and drop the `If Condition` activity onto the pipeline canvas.
+   - Configure the `If Condition` activity:
+     - **Name:** Set a name for the activity (e.g., `check_status`).
+     - **Expression:** Set the condition to check the output of the Databricks notebook:
+       ```json
+       @endsWith(substring(activity('load_data').output.runOutput, sub(lastIndexOf(activity('load_data').output.runOutput, ')'), 8), 7), 'success')
+       ```
+     - **If False Activities:** Add a `Fail` activity to handle failures.
+
+-Configure the Fail Activity
+     - **Message:** Use the output of the `load_data` activity to describe the failure:
+       ```json
+       @activity('load_data').output.runOutput
+       ```
+     - **Error Code:** Set an error code (e.g., `error`).
+
+-Create a Trigger
+-Add Trigger and Schedule
+-Publish All Changes
+
+## Explanation of the Pipeline
+
+The pipeline is designed to process data using a Databricks notebook and handle errors effectively:
+
+1. **Databricks Notebook Activity:**
+   - Executes a Databricks notebook that processes the data.
+   - The notebook takes parameters for the container and blob to process.
+
+2. **If Condition Activity:**
+   - Checks the status of the notebook execution.
+   - Uses the output from the notebook activity to determine if it was successful.
+
+3. **Fail Activity:**
+   - Executes if the notebook fails.
+   - Logs the error message and stops the pipeline.

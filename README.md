@@ -20,6 +20,85 @@ You will also need:
 
 Clone this repository to your local machine:
 
-```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+```
+git clone https://github.com/chanakaprabath/nimbus-ass.git
+cd nimbus-ass/microservice
+```
+
+### 2. Set Up Virtual Environment
+
+
+```
+python3 -m venv venv
+```
+
+Activate the virtual environment:
+
+- On Windows:
+
+```
+venv\Scripts\activate
+```
+
+- On Mac/Linux:
+
+```
+source venv/bin/activate
+```
+
+### 3. Install Dependencies
+
+Install the required Python packages using pip:
+
+```
+pip install -r requirements.txt
+```
+
+### 4. Run the Microservice
+
+Start the Flask microservice:
+
+```
+python app_local.py
+```
+
+The service will be available at `http://127.0.0.1:5000`.
+
+## API Endpoints
+
+### 1. Process Shapefile
+
+- **Endpoint:** `/process`
+- **Method:** `POST`
+- **Description:** Downloads and processes a shapefile from Azure Blob Storage, then stores the processed data in PostgreSQL.
+
+- **Request Body Example:**
+
+```json
+{
+  "container_name": "data",
+  "blob_name": "HE_Regions.zip"
+}
+```
+
+- **Response Example:**
+
+```json
+{
+  "status": "success"
+}
+```
+
+### 2. Service Status
+
+- **Endpoint:** `/status`
+- **Method:** `GET`
+- **Description:** Returns a status message indicating that the service is running.
+
+- **Response Example:**
+
+```json
+{
+  "status": "Service is running"
+}
+```

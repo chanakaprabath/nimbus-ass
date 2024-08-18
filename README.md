@@ -233,7 +233,7 @@ You should receive a response indicating that the service is running:
 - Navigate to the [Azure Portal](https://portal.azure.com).
 - Create a Databricks Workspace
 - Create a Databricks Compute Cluster
-- Create a Databricks Notebook or upload the file  
+- Create a Databricks Notebook or upload the [given file](https://github.com/chanakaprabath/nimbus-ass/blob/main/pipeline/load_data.ipynb)  
 
 ### How to configure the Notebook to Install the Wheel Package and Perform Tasks
 

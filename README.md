@@ -277,6 +277,9 @@ This guide will walk you through the steps to set up an Azure Data Factory (ADF)
 
 The pipeline is designed to process data using a Databricks notebook and handle errors effectively:
 
+Below is a screenshot of the Azure Data Factory pipeline:
+
+![Pipeline Diagram](images/pipeline.png)
 1. **Databricks Notebook Activity:**
    - Executes a Databricks notebook that processes the data.
    - The notebook takes parameters for the container and blob to process.

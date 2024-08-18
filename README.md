@@ -216,3 +216,14 @@ You should receive a response indicating that the service is running:
     ```
 
     You'll be prompted to enter your PyPI credentials. After successful upload, your package will be available on PyPI.
+5. **Installing the Package:**
+
+   you can install the package from PyPI using pip:
+
+    ```bash
+    pip install uploadshapefile==1.0.0
+    ```
+
+6. **Verify the Package:**
+
+    You can verify the package details on the [PyPI project page](https://pypi.org/project/uploadshapefile/1.0.0/).

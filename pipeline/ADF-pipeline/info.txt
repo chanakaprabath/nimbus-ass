@@ -1,0 +1,6 @@
+selected resource name:		load_regions
+selected resource type:		pipeline
+factory name:			nimbusuk-df
+factory location:		eastus
+subscription id:		6b7a2a4e-c8b1-4c8c-b0cc-584f771b5abb
+time of download (UTC):		Sun, 18 Aug 2024 16:52:05 GMT

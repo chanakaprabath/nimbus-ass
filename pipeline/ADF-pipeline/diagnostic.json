@@ -1,0 +1,23 @@
+{
+    "now": "2024-08-18T16:52:05.492Z",
+    "perfNow": 73832922.3,
+    "diagnosticCorrelation": "6bc7ba70-16ac-4d69-ad3e-5a6b193628c1",
+    "source": "DownloadSupportFiles",
+    "environment": {
+        "productName": "adf",
+        "buildVersion": "1.0.080224.3",
+        "environmentType": 3,
+        "resourceName": "nimbusuk-df",
+        "resourceRegion": "eastus",
+        "resourceGroup": "Nimbus-Ass",
+        "subscriptionId": "6b7a2a4e-c8b1-4c8c-b0cc-584f771b5abb",
+        "sessionId": "IbnHYTIVRPhFOqpbL4I/Qd",
+        "operationId": "",
+        "gitType": "live",
+        "loggingKey": "4e9a8fb6-9ec0-409c-984c-30901dc0a363"
+    },
+    "additionalInfo": {
+        "selectedResource": "load_regions",
+        "selectedResourceType": "pipeline"
+    }
+}

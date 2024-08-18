@@ -109,3 +109,66 @@ The service will be available at `http://127.0.0.1:5000`.
   "status": "Service is running"
 }
 ```
+## Instructions for Deploying the Microservice on Azure
+
+To deploy the microservice to Azure Web App, follow these steps:
+
+### 1. Create an Azure App Service Plan
+
+Create a new App Service Plan with a Linux-based hosting environment:
+
+```bash
+az appservice plan create --name NimbusAppServicePlan --resource-group Nimbus-Ass --sku B1 --is-linux
+```
+
+### 2. Create an Azure Web App
+
+Create a new Web App under the App Service Plan:
+
+```bash
+az webapp create --resource-group Nimbus-Ass --plan NimbusAppServicePlan --name UploadShapefile --runtime "PYTHON|3.9"
+```
+
+### 3. Configure Application Settings
+
+Set up the application settings for your Azure Web App. This includes the connection string for Azure Blob Storage and PostgreSQL database credentials:
+
+```bash
+az webapp config appsettings set --resource-group Nimbus-Ass --name UploadShapefile --settings AZURE_STORAGE_CONNECTION_STRING="DefaultEndpointsProtocol=https;AccountName=nimbusuk;AccountKey=xYsPV/pxUu4bhReVpFn4idHxI5LkKYWvHvKpcbg4AlSuHw4rYw2NPagnC8Imr5fPwBQcCgY42ZS4+AStIxpLyA==;EndpointSuffix=core.windows.net" DB_HOST="nimbusuk.postgres.database.azure.com" DB_NAME="postgres" DB_USER="nimbususer" DB_PASSWORD="Chanaka@9633"
+```
+
+### 4. Deploy the Application
+
+Deploy the application using Visual Studio Code:
+
+1. Open Visual Studio Code.
+2. Install the [Azure App Service extension] if not already installed.
+3. Sign in to your Azure account within Visual Studio Code.
+4. Open your project folder in Visual Studio Code (nimbus-ass/microservice/web-app).
+5. In the Azure App Service extension panel, click on the "Deploy to Web App" button.
+6. Select the target Web App (e.g., `UploadShapefile`) from the list.
+7. Follow the prompts to deploy your application.
+
+### 5. Access the Deployed Web App
+
+Your Flask microservice will be available at `https://<your-web-app-name>.azurewebsites.net`. For this repository, the web app is hosted at:
+
+```
+https://uploadshapefile.azurewebsites.net
+```
+
+### 6. Verify Deployment
+
+To verify that the deployment was successful, navigate to the URL provided by Azure and test the `/status` endpoint to ensure the microservice is running:
+
+```bash
+curl https://uploadshapefile.azurewebsites.net/status
+```
+
+You should receive a response indicating that the service is running:
+
+```json
+{
+  "status": "Service is running"
+}
+```

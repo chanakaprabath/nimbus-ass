@@ -243,6 +243,6 @@ You should receive a response indicating that the service is running:
   %pip install uploadshapefile==1.0.0
 - Then import libraries from `uploadshapefile` package:
   ```python
-from uploadshapefile import functions
-spark = SparkSession.builder.appName("Shapefile_load").getOrCreate()
-upload_result = functions.upload(container,blob)#load data
+  from uploadshapefile import functions
+  spark = SparkSession.builder.appName("Shapefile_load").getOrCreate()
+  upload_result = functions.upload(container,blob)#load data

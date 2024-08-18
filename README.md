@@ -227,3 +227,22 @@ You should receive a response indicating that the service is running:
 6. **Verify the Package:**
 
     You can verify the package details on the [PyPI project page](https://pypi.org/project/uploadshapefile/1.0.0/).
+# Steps for Creating and Configuring the Databricks Notebook
+
+- Open the Azure Portal
+- Navigate to the [Azure Portal](https://portal.azure.com).
+- Create a Databricks Workspace
+- Create a Databricks Compute Cluster
+- Create a Databricks Notebook or upload the file  
+
+### How to configure the Notebook to Install the Wheel Package and Perform Tasks
+
+- In the first cell of the notebook, use `%pip` to install the `uploadshapefile` package:
+
+  ```python
+  %pip install uploadshapefile==1.0.0
+- Then import libraries from `uploadshapefile` package:
+  ```python
+from uploadshapefile import functions
+spark = SparkSession.builder.appName("Shapefile_load").getOrCreate()
+upload_result = functions.upload(container,blob)#load data
